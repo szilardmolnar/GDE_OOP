@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class Jarat(ABC):
-    @abstractmethod
-    def tostring(self):
-        pass
+    def __init__(self, jaratszam, celallomas, jegyar):
+        self.jaratszam = jaratszam
+        self.celallomas = celallomas
+        self.jegyar = jegyar
