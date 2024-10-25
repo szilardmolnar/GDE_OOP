@@ -28,16 +28,37 @@ legitarsasag = LegiTarsasag(1, "Lufthansa")
 jarat1 = NemzetkoziJarat("LH1335", "Frankfurt am Main", 61259)
 jarat2 = NemzetkoziJarat("LH1343", "Salzburg", 173300)
 jarat3 = NemzetkoziJarat("LH1675", "Copenhagen", 94900)
-foglalas1 = JegyFoglalas()
-foglalas2 = JegyFoglalas()
-foglalas3 = JegyFoglalas()
-foglalas4 = JegyFoglalas()
-foglalas5 = JegyFoglalas()
-foglalas6 = JegyFoglalas()
+
+legitarsasag.add_jarat(jarat1)
+legitarsasag.add_jarat(jarat2)
+legitarsasag.add_jarat(jarat3)
+
+foglalas1 = JegyFoglalas(jarat1, "6:45", "Kiss József")
+#foglalas2 = JegyFoglalas()
+#foglalas3 = JegyFoglalas()
+#foglalas4 = JegyFoglalas()
+#foglalas5 = JegyFoglalas()
+#foglalas6 = JegyFoglalas()
 
 print(f"-----------------------------")
 print(f"Repülőjegy Foglalási Rendszer")
 print(f"-----------------------------")
+print(f"FŐMENÜ")
+print(f" 1.) Jegy foglalása")
+print(f" 2.) Foglalás lemondása")
+print(f" 3.) Foglalások listázása")
+print(f" 0.) Kilépés")
+while True:
+    try:
+        inputszam = int(input("Add meg a menüpont számát: "))
+        if inputszam == 0:
+            print(f">>>Kilépés ...")
+            break
+    except ValueError:
+        print("Nem szám")
+
+#while True:
+
 
 foglalas1.to_string()
 
