@@ -62,17 +62,22 @@ while True:
             if legitarsasag.is_valid_jaratszam(jaratszam):
                 print(f"Létező járatszám: {jaratszam}")
             #elif LegiTarsasag.letezoJarat(jarat) == "nem":
+                if legitarsasag.is_available_jaratszam(jaratszam):
+                    foglalas = JegyFoglalas(legitarsasag.get_jarat_by_jaratszam(jaratszam), "0:0", "Molnár")
+                    sikeres_foglalas_szama = foglalasok.add_foglalas(foglalas)
+                    print(f"Sikeres foglalás {sikeres_foglalas_szama} számon")
+                else:
+                    print(f"Nem elérhető járat: {jaratszam}")
+
             else:
                 print(f"Nem létező járatszám: {jaratszam}")
-            if legitarsasag.is_available_jaratszam(jaratszam):
-                foglalas = JegyFoglalas(legitarsasag.get_jarat_by_jaratszam(jaratszam), "0:0", "Molnár")
-                foglalasok.add_foglalas(foglalas)
-            else:
-                print(f"Nem elérhető járat: {jaratszam}")
+
             pass
         elif inputszam == 2:
-            room = int(input("Add meg a foglalás számát, amit szeretnél lemondani! "))
-            self._hotel.unbook_by_room_number(room)
+            foglalas = int(input("Add meg a foglalás számát, amit szeretnél lemondani! "))
+            #self._hotel.unbook_by_room_number(room)
+            torolt_foglalas = foglalasok.remove_foglalas_by_id(foglalas)
+            print(f" {torolt_foglalas} számú foglalás törölve ")
             pass
         elif inputszam == 3:
             if foglalasok.get_foglalasok_szama() == 0:

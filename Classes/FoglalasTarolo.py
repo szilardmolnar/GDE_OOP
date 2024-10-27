@@ -4,6 +4,16 @@ class FoglalasTarolo:
 
     def add_foglalas(self, foglalas):
         self._foglalasok.append(foglalas)
+        return foglalas.id
+
+    def remove_foglalas(self, foglalas):
+        pass
+
+    def remove_foglalas_by_id(self, foglalas_id):
+        for foglalas in self._foglalasok:
+            if foglalas.id == foglalas_id:
+                self._foglalasok.remove(foglalas)
+                return foglalas_id
 
     def get_foglalasok(self):
         for foglalas in self._foglalasok:
