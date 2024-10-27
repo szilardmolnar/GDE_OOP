@@ -16,6 +16,11 @@ class LegiTarsasag:
             if jaratszam == jarat.jaratszam:
                 return jarat
 
+    def get_jegyar_by_jaratszam(self, jaratszam):
+        for jarat in self._jaratok:
+            if jaratszam == jarat.jaratszam:
+                return jarat.jegyar
+
     def get_jarat_szamok(self):
         for jarat in self._jaratok:
             print(jarat.jaratszam)
@@ -29,15 +34,12 @@ class LegiTarsasag:
 
     def is_valid_jaratszam(self, jaratszam):
         for jarat in self._jaratok:
-            #print(f" j {jarat.jaratszam} ")
             if jarat.jaratszam == jaratszam:
                 return True
         return False
 
     def is_exist(self, jarat):
         return jarat in self._jaratok
-
-    #def get_jaratok_szamai(self, ):
 
     def letezoJarat(self, jaratszam):
         for jarat in self._jaratok:

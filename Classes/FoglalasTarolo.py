@@ -6,9 +6,6 @@ class FoglalasTarolo:
         self._foglalasok.append(foglalas)
         return foglalas.id
 
-    def remove_foglalas(self, foglalas):
-        pass
-
     def remove_foglalas_by_id(self, foglalas_id):
         for foglalas in self._foglalasok:
             if foglalas.id == foglalas_id:
@@ -21,6 +18,3 @@ class FoglalasTarolo:
 
     def get_foglalasok_szama(self):
         return len(self._foglalasok)
-
-    def get_foglalasok_jaratszamok(self):
-        return

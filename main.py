@@ -1,4 +1,6 @@
 # This is a sample Python script.
+from datetime import datetime
+
 from Classes.FoglalasTarolo import FoglalasTarolo
 from Classes.JegyFoglalas import JegyFoglalas
 from Classes.LegiTarsasag import LegiTarsasag
@@ -33,15 +35,19 @@ legitarsasag.add_jarat(jarat2)
 legitarsasag.add_jarat(jarat3)
 
 foglalas1 = JegyFoglalas(jarat1, "6:45", "Kiss József")
-foglalas2 = JegyFoglalas(jarat1, "25:00", "Nagy István")
-#foglalas3 = JegyFoglalas()
-#foglalas4 = JegyFoglalas()
-#foglalas5 = JegyFoglalas()
-#foglalas6 = JegyFoglalas()
+foglalas2 = JegyFoglalas(jarat1, "23:00", "Nagy István")
+foglalas3 = JegyFoglalas(jarat2, "10:00", "Kovács László")
+foglalas4 = JegyFoglalas(jarat2, "12:30", "Molnár Péter")
+foglalas5 = JegyFoglalas(jarat2, "16:45", "Takács Béla")
+foglalas6 = JegyFoglalas(jarat2, "17:15", "Tavaszi Virág")
 
 foglalasok = FoglalasTarolo()
 foglalasok.add_foglalas(foglalas1)
 foglalasok.add_foglalas(foglalas2)
+foglalasok.add_foglalas(foglalas3)
+foglalasok.add_foglalas(foglalas4)
+foglalasok.add_foglalas(foglalas5)
+foglalasok.add_foglalas(foglalas6)
 
 print(f"-----------------------------")
 print(f"Repülőjegy Foglalási Rendszer")
@@ -56,26 +62,36 @@ while True:
         inputszam = int(input("Add meg a menüpont számát: "))
         if inputszam == 1:
             jaratszam = input("Add meg a járat számát, amire szeretnél helyet foglalni! ")
-            #self._hotel.book_by_room_number(room)
-            print(f"megadott jarat: {jaratszam}")
-            #if LegiTarsasag.letezoJarat(jaratszam) == "igen":
             if legitarsasag.is_valid_jaratszam(jaratszam):
-                print(f"Létező járatszám: {jaratszam}")
-            #elif LegiTarsasag.letezoJarat(jarat) == "nem":
                 if legitarsasag.is_available_jaratszam(jaratszam):
-                    foglalas = JegyFoglalas(legitarsasag.get_jarat_by_jaratszam(jaratszam), "0:0", "Molnár")
+                    while True:
+                        try:
+                            idopont = input("Add meg az indulás időpontját ! ")
+                            timeformat = "%H:%M"
+                            datetime.strptime(idopont, timeformat)
+                            break
+                        except ValueError:
+                            print(f"Megadott időpont {idopont} nem érvényes")
+                    while True:
+                        try:
+                            nev = input("Add meg a foglaló nevét: ")
+                            if not nev.isalpha():
+                                raise ValueError("Csak szöveges bemenetet lehet megadni!")
+                            break
+                        except ValueError as e:
+                            print(e)
+
+                    foglalas = JegyFoglalas(legitarsasag.get_jarat_by_jaratszam(jaratszam), idopont, nev)
                     sikeres_foglalas_szama = foglalasok.add_foglalas(foglalas)
                     print(f"Sikeres foglalás {sikeres_foglalas_szama} számon")
+                    print(f"Foglalás ára: {legitarsasag.get_jegyar_by_jaratszam(jaratszam)}Ft ")
                 else:
                     print(f"Nem elérhető járat: {jaratszam}")
-
             else:
                 print(f"Nem létező járatszám: {jaratszam}")
-
             pass
         elif inputszam == 2:
             foglalas = int(input("Add meg a foglalás számát, amit szeretnél lemondani! "))
-            #self._hotel.unbook_by_room_number(room)
             torolt_foglalas = foglalasok.remove_foglalas_by_id(foglalas)
             print(f" {torolt_foglalas} számú foglalás törölve ")
             pass
@@ -90,21 +106,3 @@ while True:
         print(f"FŐMENÜ: 1.) Jegy foglalása 2.) Foglalás lemondása 3.) Foglalások listázása 0.) Kilépés ")
     except ValueError:
         print("Nem szám típusú, amit beírtál")
-
-#while True:
-
-
-#foglalas1.to_string()
-
-
-
-
-foglalasok.get_foglalasok()
-foglalasok.get_foglalasok_jaratszamok()
-legitarsasag.get_jarat_szamok()
-if legitarsasag.is_valid_jaratszam("LH"):
-    print(f"ervenyes")
-
-print(f"jaratok listazasa")
-legitarsasag.get_jaratok()
-print(legitarsasag.get_jarat_by_jaratszam("LH1675"))
