@@ -11,9 +11,21 @@ class LegiTarsasag:
         for jarat in self._jaratok:
             print(jarat)
 
+    def get_jarat_by_jaratszam(self, jaratszam):
+        for jarat in self._jaratok:
+            if jaratszam == jarat.jaratszam:
+                return jarat
+
     def get_jarat_szamok(self):
         for jarat in self._jaratok:
             print(jarat.jaratszam)
+
+    def is_available_jaratszam(self, jaratszam):
+        jarat = self.get_jarat_by_jaratszam(jaratszam)
+        if jarat.elerhetoseg == "igen":
+            return True
+        else:
+            return False
 
     def is_valid_jaratszam(self, jaratszam):
         for jarat in self._jaratok:

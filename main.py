@@ -28,7 +28,6 @@ legitarsasag = LegiTarsasag(1, "Lufthansa")
 jarat1 = NemzetkoziJarat("LH1335", "Frankfurt am Main", 61259, "igen")
 jarat2 = NemzetkoziJarat("LH1343", "Salzburg", 173300, "igen")
 jarat3 = NemzetkoziJarat("LH1675", "Copenhagen", 94900, "nem")
-
 legitarsasag.add_jarat(jarat1)
 legitarsasag.add_jarat(jarat2)
 legitarsasag.add_jarat(jarat3)
@@ -65,7 +64,11 @@ while True:
             #elif LegiTarsasag.letezoJarat(jarat) == "nem":
             else:
                 print(f"Nem létező járatszám: {jaratszam}")
-            #foglalas = JegyFoglalas(jarat, "0:0", "Molnár")
+            if legitarsasag.is_available_jaratszam(jaratszam):
+                foglalas = JegyFoglalas(legitarsasag.get_jarat_by_jaratszam(jaratszam), "0:0", "Molnár")
+                foglalasok.add_foglalas(foglalas)
+            else:
+                print(f"Nem elérhető járat: {jaratszam}")
             pass
         elif inputszam == 2:
             room = int(input("Add meg a foglalás számát, amit szeretnél lemondani! "))
@@ -96,3 +99,7 @@ foglalasok.get_foglalasok_jaratszamok()
 legitarsasag.get_jarat_szamok()
 if legitarsasag.is_valid_jaratszam("LH"):
     print(f"ervenyes")
+
+print(f"jaratok listazasa")
+legitarsasag.get_jaratok()
+print(legitarsasag.get_jarat_by_jaratszam("LH1675"))
