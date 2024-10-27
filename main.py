@@ -25,20 +25,24 @@ import this
 
 
 legitarsasag = LegiTarsasag(1, "Lufthansa")
-jarat1 = NemzetkoziJarat("LH1335", "Frankfurt am Main", 61259)
-jarat2 = NemzetkoziJarat("LH1343", "Salzburg", 173300)
-jarat3 = NemzetkoziJarat("LH1675", "Copenhagen", 94900)
+jarat1 = NemzetkoziJarat("LH1335", "Frankfurt am Main", 61259, "igen")
+jarat2 = NemzetkoziJarat("LH1343", "Salzburg", 173300, "igen")
+jarat3 = NemzetkoziJarat("LH1675", "Copenhagen", 94900, "nem")
 
 legitarsasag.add_jarat(jarat1)
 legitarsasag.add_jarat(jarat2)
 legitarsasag.add_jarat(jarat3)
 
 foglalas1 = JegyFoglalas(jarat1, "6:45", "Kiss József")
-#foglalas2 = JegyFoglalas()
+foglalas2 = JegyFoglalas(jarat1, "25:00", "Nagy István")
 #foglalas3 = JegyFoglalas()
 #foglalas4 = JegyFoglalas()
 #foglalas5 = JegyFoglalas()
 #foglalas6 = JegyFoglalas()
+
+foglalasok = FoglalasTarolo()
+foglalasok.add_foglalas(foglalas1)
+foglalasok.add_foglalas(foglalas2)
 
 print(f"-----------------------------")
 print(f"Repülőjegy Foglalási Rendszer")
@@ -51,18 +55,38 @@ print(f" 0.) Kilépés")
 while True:
     try:
         inputszam = int(input("Add meg a menüpont számát: "))
-        if inputszam == 0:
+        if inputszam == 1:
+            jaratszam = input("Add meg a járat számát, amire szeretnél helyet foglalni! ")
+            #self._hotel.book_by_room_number(room)
+            print(f"megadott jarat: {jaratszam}")
+            if LegiTarsasag.letezoJarat(jaratszam) == "igen":
+                print(f"Létező járatszám: {jaratszam}")
+            elif LegiTarsasag.letezoJarat(jarat) == "nem":
+                print(f"Nem létező járatszám: {jaratszam}")
+            #foglalas = JegyFoglalas(jarat, "0:0", "Molnár")
+            pass
+        elif inputszam == 2:
+            room = int(input("Add meg a foglalás számát, amit szeretnél lemondani! "))
+            self._hotel.unbook_by_room_number(room)
+            pass
+        elif inputszam == 3:
+            if foglalasok.get_foglalasok_szama() == 0:
+                print(f"Foglalások listája üres")
+            foglalasok.get_foglalasok()
+            pass
+        elif inputszam == 0:
             print(f">>>Kilépés ...")
             break
+        print(f"FŐMENÜ: 1.) Jegy foglalása 2.) Foglalás lemondása 3.) Foglalások listázása 0.) Kilépés ")
     except ValueError:
-        print("Nem szám")
+        print("Nem szám típusú, amit beírtál")
 
 #while True:
 
 
-foglalas1.to_string()
+#foglalas1.to_string()
 
-foglalasok = FoglalasTarolo()
-foglalasok.add_foglalas(foglalas1)
+
+
 
 foglalasok.get_foglalasok()

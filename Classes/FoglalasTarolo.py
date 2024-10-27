@@ -8,3 +8,6 @@ class FoglalasTarolo:
     def get_foglalasok(self):
         for foglalas in self._foglalasok:
             print(foglalas)
+
+    def get_foglalasok_szama(self):
+        return len(self._foglalasok)
