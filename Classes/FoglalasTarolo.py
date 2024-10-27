@@ -11,3 +11,6 @@ class FoglalasTarolo:
 
     def get_foglalasok_szama(self):
         return len(self._foglalasok)
+
+    def get_foglalasok_jaratszamok(self):
+        return

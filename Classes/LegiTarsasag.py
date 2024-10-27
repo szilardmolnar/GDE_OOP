@@ -11,6 +11,17 @@ class LegiTarsasag:
         for jarat in self._jaratok:
             print(jarat)
 
+    def get_jarat_szamok(self):
+        for jarat in self._jaratok:
+            print(jarat.jaratszam)
+
+    def is_valid_jaratszam(self, jaratszam):
+        for jarat in self._jaratok:
+            #print(f" j {jarat.jaratszam} ")
+            if jarat.jaratszam == jaratszam:
+                return True
+        return False
+
     def is_exist(self, jarat):
         return jarat in self._jaratok
 

@@ -59,9 +59,11 @@ while True:
             jaratszam = input("Add meg a járat számát, amire szeretnél helyet foglalni! ")
             #self._hotel.book_by_room_number(room)
             print(f"megadott jarat: {jaratszam}")
-            if LegiTarsasag.letezoJarat(jaratszam) == "igen":
+            #if LegiTarsasag.letezoJarat(jaratszam) == "igen":
+            if legitarsasag.is_valid_jaratszam(jaratszam):
                 print(f"Létező járatszám: {jaratszam}")
-            elif LegiTarsasag.letezoJarat(jarat) == "nem":
+            #elif LegiTarsasag.letezoJarat(jarat) == "nem":
+            else:
                 print(f"Nem létező járatszám: {jaratszam}")
             #foglalas = JegyFoglalas(jarat, "0:0", "Molnár")
             pass
@@ -90,3 +92,7 @@ while True:
 
 
 foglalasok.get_foglalasok()
+foglalasok.get_foglalasok_jaratszamok()
+legitarsasag.get_jarat_szamok()
+if legitarsasag.is_valid_jaratszam("LH"):
+    print(f"ervenyes")
